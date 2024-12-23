@@ -2,5 +2,8 @@
 
 return [
   'debug' => true,
-  'url' => '/'
+  'url' => '/',
+  'panel' => [
+    'install' => true
+  ]
 ];
