@@ -1,0 +1,88 @@
+title: Projects
+
+options:
+  changeTitle: false
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  move: false
+
+tabs:
+  content:
+    icon: text
+    sections:
+      fields:
+        type: fields
+        fields:
+          projectsList:
+            label: false
+            type: structure
+            fields:
+              title:
+                type: text
+              desc:
+                label: Description
+                type: textarea
+              date:
+                width: 1/2
+                type: date
+              link:
+                width: 1/2
+                label: URL
+                type: url
+              image:
+                width: 1/2
+                type: files
+                layout: cards
+                multiple: false
+                uploads: image
+                query: page.images
+              video:
+                width: 1/2
+                type: files
+                layout: cards
+                multiple: false
+                query: page.images
+
+  seo:
+    label: SEO
+    icon: search
+    columns:
+      left:
+        width: 3/4
+        sections:
+          seoLeftCol:
+            type: fields
+            fields:
+              pageTitle:
+                label: Title
+                type: text
+              description:
+                type: textarea
+                buttons: false
+              keywords:
+                type: text
+              ogImage:
+                label: Image
+                type: files
+                query: page.images
+                layout: cards
+                multiple: false
+                size: large
+                uploads: image
+                query: page.images
+                image:
+                  ratio: 1200/630
+      right:
+        width: 1/4
+        sections:
+          seoRightCol:
+            type: fields
+            fields:
+              searchable:
+                type: toggle
+                default: false
+                text:
+                  - "No"
+                  - "Yes"

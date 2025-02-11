@@ -1,0 +1,92 @@
+title: Vacancies
+
+options:
+  changeTitle: false
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  move: false
+
+tabs:
+  content:
+    icon: text
+    sections:
+      fields:
+        type: fields
+        fields:
+          vacanciesList:
+            width: 1/2
+            label: List
+            type: structure
+            fields:
+              title:
+                type: text
+                required: true
+              text:
+                type: textarea
+                required: true
+                size: medium
+              desc:
+                label: Description
+                type: structure
+                fields:
+                  title:
+                    type: text
+                    required: true
+                  text:
+                    type: textarea
+                    required: true
+                    size: medium
+              footnote:
+                type: textarea
+            columns:
+              title: true
+          features:
+            width: 1/2
+            type: structure
+            fields:
+              text:
+                type: textarea
+                required: true
+  seo:
+    label: SEO
+    icon: search
+    columns:
+      left:
+        width: 3/4
+        sections:
+          seoLeftCol:
+            type: fields
+            fields:
+              pageTitle:
+                label: Title
+                type: text
+              description:
+                type: textarea
+                buttons: false
+              keywords:
+                type: text
+              ogImage:
+                label: Image
+                type: files
+                query: page.images
+                layout: cards
+                multiple: false
+                size: large
+                uploads: image
+                query: page.images
+                image:
+                  ratio: 1200/630
+      right:
+        width: 1/4
+        sections:
+          seoRightCol:
+            type: fields
+            fields:
+              searchable:
+                type: toggle
+                default: false
+                text:
+                  - "No"
+                  - "Yes"

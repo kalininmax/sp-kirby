@@ -1,0 +1,143 @@
+title: Home
+
+options:
+  changeTitle: false
+  changeSlug: false
+  changeStatus: false
+  delete: false
+  duplicate: false
+  move: false
+
+tabs:
+  content:
+    icon: text
+    sections:
+      fields:
+        type: fields
+        fields:
+          introHeadline:
+            label: Intro
+            type: headline
+          introText:
+            width: 1/2
+            label: Text
+            type: textarea
+          services:
+            width: 1/2
+            type: structure
+            fields:
+              icon:
+                type: select
+                options:
+                  layout: Layout
+                  frontend: Frontend
+                  backend: Backend
+                  outsource: Outsource
+                required: true
+              title:
+                label: Title
+                type: text
+                required: true
+              text:
+                label: Text
+                type: textarea
+                required: true
+            columns:
+              title: true
+
+          clientsHeadline:
+            label: Clients
+            type: headline
+          clientsText:
+            width: 1/2
+            label: Text
+            type: textarea
+          clientsList:
+            width: 1/2
+            label: List
+            type: structure
+            fields:
+              name:
+                type: text
+
+          awardsHeadline:
+            label: Awards
+            type: headline
+          awardsList:
+            label: List
+            type: structure
+            fields:
+              project:
+                type: text
+                required: true
+              award:
+                type: text
+                required: true
+              year:
+                width: 1/2
+                type: text
+                maxlength: 4
+                required: true
+              prize:
+                width: 1/2
+                type: text
+                required: true
+              link:
+                type: url
+
+          technologiesHeadline:
+            label: Technologies
+            type: headline
+          technologiesList:
+            label: List
+            type: structure
+            fields:
+              title:
+                type: text
+                required: true
+              list:
+                type: tags
+                layout: list
+                icon: list-bullet
+
+  seo:
+    label: SEO
+    icon: search
+    columns:
+      left:
+        width: 3/4
+        sections:
+          seoLeftCol:
+            type: fields
+            fields:
+              pageTitle:
+                label: Title
+                type: text
+              description:
+                type: textarea
+                buttons: false
+              keywords:
+                type: text
+              ogImage:
+                label: Image
+                type: files
+                query: page.images
+                layout: cards
+                multiple: false
+                size: large
+                uploads: image
+                query: page.images
+                image:
+                  ratio: 1200/630
+      right:
+        width: 1/4
+        sections:
+          seoRightCol:
+            type: fields
+            fields:
+              searchable:
+                type: toggle
+                default: false
+                text:
+                  - "No"
+                  - "Yes"
