@@ -2,4 +2,117 @@ Title: Home
 
 ----
 
+Introtext:
+
+Веб-разработка для широкого круга индустрий. Специализируемся на онлайн-сервисах, корпоративных сайтах и имиджевых проектах.
+
+----
+
+Services:
+
+- 
+  icon: layout
+  title: Вёрстка
+  text: >
+    Верстаем страницы и
+    дизайн-системы.
+    Быстро, качественно и
+    с анимациями.
+- 
+  icon: outsource
+  title: Front-end аутсорсинг
+  text: >
+    Стек технологий — React
+    и Vue. Умеем делать MVP
+    для тестирования
+    бизнес-идей.
+- 
+  icon: backend
+  title: Back-end
+  text: >
+    Системы управления
+    контентом на базе
+    headless CMS (Jamstack), Strapi, Kirby
+    CMS, Битрикс, Laravel.
+- 
+  icon: frontend
+  title: Креативный front-end
+  text: >
+    Для имиджевых и промо
+    сайтов. Используем GSAP,
+    WebGL, Three.js и
+    колоссальный опыт.
+
+----
+
+Clientstext: 
+
+----
+
+Clientslist: 
+
+----
+
+Awardslist:
+
+- 
+  project: АльпИндустрия
+  award: Tagline Awards
+  year: "2023"
+  prize: Золото
+  link: https://tagline.ru/cases/alpindustria/
+- 
+  project: Nissan
+  award: Awwwards
+  year: "2022"
+  prize: HM
+  link: >
+    https://www.awwwards.com/sites/nissan-pathfinder
+
+----
+
+Technologieslist:
+
+- 
+  title: Front-end
+  list: >
+    Next.js, React, WebGL, PixiJS, HTML5,
+    CSS3, JavaScript, TypeScript, Vue.js,
+    Nuxt.js, GSAP, Three.js
+- 
+  title: No-Code
+  list: Webflow
+- 
+  title: Back-end
+  list: >
+    Битрикс, Laravel, Headless CMS,
+    WordPress, Kirby CMS, Strapi
+- 
+  title: Методологии
+  list: >
+    БЭМ, JAMstack,
+    Компонентный подход
+
+----
+
+Pagetitle: 
+
+----
+
+Description: 
+
+----
+
+Keywords: 
+
+----
+
+Ogimage: 
+
+----
+
+Searchable: false
+
+----
+
 Uuid: cpmae0nwwlntrs8b
