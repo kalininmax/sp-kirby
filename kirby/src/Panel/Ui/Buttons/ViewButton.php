@@ -4,6 +4,8 @@ namespace Kirby\Panel\Ui\Buttons;
 
 use Closure;
 use Kirby\Cms\App;
+use Kirby\Cms\Language;
+use Kirby\Cms\ModelWithContent;
 use Kirby\Panel\Panel;
 use Kirby\Panel\Ui\Button;
 use Kirby\Toolkit\Controller;
@@ -24,6 +26,7 @@ class ViewButton extends Button
 {
 	public function __construct(
 		public string $component = 'k-view-button',
+		public readonly ModelWithContent|Language|null $model = null,
 		public array|null $badge = null,
 		public string|null $class = null,
 		public string|bool|null $current = null,
@@ -38,12 +41,14 @@ class ViewButton extends Button
 		public string|null $size = 'sm',
 		public string|null $style = null,
 		public string|null $target = null,
-		public string|null $text = null,
+		public string|array|null $text = null,
 		public string|null $theme = null,
-		public string|null $title = null,
+		public string|array|null $title = null,
 		public string $type = 'button',
 		public string|null $variant = 'filled',
+		...$attrs
 	) {
+		$this->attrs = $attrs;
 	}
 
 	/**
@@ -52,16 +57,31 @@ class ViewButton extends Button
 	 * and resolving to proper instance
 	 */
 	public static function factory(
-		string|array|Closure $button,
+		string|array|Closure|true $button = true,
+		string|int|null $name = null,
 		string|null $view = null,
+		ModelWithContent|Language|null $model = null,
 		array $data = []
 	): static|null {
-		// referenced by name
-		if (is_string($button) === true) {
-			$button = static::find($button, $view);
+		// transform `- name` notation to `name: true`
+		if (
+			is_string($name) === false &&
+			is_string($button) === true
+		) {
+			$name   = $button;
+			$button = true;
 		}
 
-		$button = static::resolve($button, $data);
+		// if referenced by name (`name: true`),
+		// try to get button definition from areas or config
+		if ($button === true) {
+			$button = static::find($name, $view);
+		}
+
+		// resolve Closure to button object or array
+		if ($button instanceof Closure) {
+			$button = static::resolve($button, $model, $data);
+		}
 
 		if (
 			$button === null ||
@@ -70,7 +90,17 @@ class ViewButton extends Button
 			return $button;
 		}
 
-		return new static(...static::normalize($button));
+		// flatten array into list of arguments for this class
+		$button = static::normalize($button);
+
+		// if button definition has a name, use it for the component name
+		if (is_string($name) === true) {
+			// if this specific component does not exist,
+			// `k-view-buttons` will fall back to `k-view-button` again
+			$button['component'] ??= 'k-' . $name . '-view-button';
+		}
+
+		return new static(...$button, model: $model);
 	}
 
 	/**
@@ -125,8 +155,20 @@ class ViewButton extends Button
 
 	public function props(): array
 	{
+		// helper for props that support Kirby queries
+		$resolve = fn ($value) =>
+			$value ?
+			$this->model?->toSafeString($value) ?? $value :
+			null;
+
 		return [
-			...parent::props(),
+			...$props = parent::props(),
+			'dialog'  => $resolve($props['dialog']),
+			'drawer'  => $resolve($props['drawer']),
+			'icon'    => $resolve($props['icon']),
+			'link'    => $resolve($props['link']),
+			'text'    => $resolve($props['text']),
+			'theme'   => $resolve($props['theme']),
 			'options' => $this->options
 		];
 	}
@@ -137,20 +179,29 @@ class ViewButton extends Button
 	 * @internal
 	 */
 	public static function resolve(
-		Closure|array $button,
+		Closure $button,
+		ModelWithContent|Language|null $model = null,
 		array $data = []
 	): static|array|null {
-		if ($button instanceof Closure) {
-			$kirby      = App::instance();
-			$controller = new Controller($button);
-			$button     = $controller->call(data: [
-				'kirby' => $kirby,
-				'site'  => $kirby->site(),
-				'user'  => $kirby->user(),
+		$kirby      = App::instance();
+		$controller = new Controller($button);
+
+		if (
+			$model instanceof ModelWithContent ||
+			$model instanceof Language
+		) {
+			$data = [
+				'model'             => $model,
+				$model::CLASS_ALIAS => $model,
 				...$data
-			]);
+			];
 		}
 
-		return $button;
+		return $controller->call(data: [
+			'kirby' => $kirby,
+			'site'  => $kirby->site(),
+			'user'  => $kirby->user(),
+			...$data
+		]);
 	}
 }

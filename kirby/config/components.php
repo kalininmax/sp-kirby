@@ -4,8 +4,11 @@ use Kirby\Cms\App;
 use Kirby\Cms\Collection;
 use Kirby\Cms\File;
 use Kirby\Cms\FileVersion;
+use Kirby\Cms\ModelWithContent;
 use Kirby\Cms\Page;
 use Kirby\Cms\User;
+use Kirby\Content\PlainTextStorage;
+use Kirby\Content\Storage;
 use Kirby\Data\Data;
 use Kirby\Email\PHPMailer as Emailer;
 use Kirby\Exception\NotFoundException;
@@ -15,6 +18,7 @@ use Kirby\Filesystem\Filename;
 use Kirby\Http\Uri;
 use Kirby\Http\Url;
 use Kirby\Image\Darkroom;
+use Kirby\Session\SessionStore;
 use Kirby\Template\Snippet;
 use Kirby\Template\Template;
 use Kirby\Text\Markdown;
@@ -263,6 +267,13 @@ return [
 	},
 
 	/**
+	 * Add your own session store
+	 */
+	'session::store' => function (App $kirby): string|SessionStore {
+		return $kirby->root('sessions');
+	},
+
+	/**
 	 * Add your own SmartyPants parser
 	 *
 	 * @param string $text Text to parse
@@ -299,6 +310,16 @@ return [
 		bool $slots = false
 	): Snippet|string {
 		return Snippet::factory($name, $data, $slots);
+	},
+
+	/**
+	 * Create a new storage object for the given model
+	 */
+	'storage' => function (
+		App $kirby,
+		ModelWithContent $model
+	): Storage {
+		return new PlainTextStorage(model: $model);
 	},
 
 	/**

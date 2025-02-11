@@ -80,7 +80,7 @@ class System
 			case 'git':
 				return $url . '/config';
 			case 'kirby':
-				return $url . '/composer.json';
+				return $url . '/LICENSE.md';
 			case 'site':
 				$root  = $this->app->root('site');
 				$files = glob($root . '/blueprints/*.yml');
@@ -409,6 +409,16 @@ class System
 	public function serverSoftware(): string
 	{
 		return $this->app->environment()->get('SERVER_SOFTWARE', '–');
+	}
+
+	/**
+	 * Returns the short version of the detected server software
+	 * @since 4.6.0
+	 */
+	public function serverSoftwareShort(): string
+	{
+		$software = $this->serverSoftware();
+		return strtok($software, ' ');
 	}
 
 	/**
