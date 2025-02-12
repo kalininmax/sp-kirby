@@ -1,5 +1,66 @@
 title: Site
 
-sections:
-  pages:
-    type: pages
+tabs:
+  content:
+    icon: text
+    sections:
+      pages:
+        type: pages
+        image: icon
+  global:
+    icon: cog
+    columns:
+      top:
+        sections:
+          topFields:
+            type: fields
+            fields:
+              info:
+                label: false
+                type: info
+                text: |
+                  Default values for all pages
+              seoHeadline:
+                type: headline
+                label: SEO
+      left:
+        width: 3/4
+        sections:
+          seoLeftCol:
+            type: fields
+            fields:
+              pageTitle:
+                label: Title
+                type: text
+                required: true
+              description:
+                type: textarea
+                required: true
+                buttons: false
+              keywords:
+                type: text
+                required: true
+              ogImage:
+                label: Image
+                type: files
+                required: true
+                query: page.images
+                layout: cards
+                multiple: false
+                size: large
+                uploads: image
+                query: page.images
+                image:
+                  ratio: 1200/630
+      right:
+        width: 1/4
+        sections:
+          seoRightCol:
+            type: fields
+            fields:
+              searchable:
+                type: toggle
+                default: false
+                text:
+                  - "No"
+                  - "Yes"
