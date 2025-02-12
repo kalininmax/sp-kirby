@@ -2,5 +2,5 @@
 
 return [
   'debug' => true,
-  'url' => '/',
+  'url' => 'http://5693366a1538.vps.myjino.ru:49506/',
 ];
