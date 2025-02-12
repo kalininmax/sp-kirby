@@ -45,11 +45,76 @@ Services:
 
 ----
 
-Clientstext: 
+Clientstext: Мы работаем с людьми, агентствами и компаниями, доверяющими нашему опыту и разделяющими с нами ценности качественной вёрстки и внимания к мелочам.
 
 ----
 
-Clientslist: 
+Clientslist:
+
+- 
+  name: ONY
+- 
+  name: Praxis Group
+- 
+  name: ФОМ
+- 
+  name: СТС Медиа
+- 
+  name: БКС
+- 
+  name: SETTERS
+- 
+  name: habr
+- 
+  name: INNOVA
+- 
+  name: SLAVA
+- 
+  name: VK
+- 
+  name: Яндекс
+- 
+  name: Пятница!
+- 
+  name: Супер
+- 
+  name: РЖД
+- 
+  name: САМОКАТ
+- 
+  name: Мособлгаз
+- 
+  name: МТС
+- 
+  name: X5 group
+- 
+  name: Третьяковка
+- 
+  name: redkeds
+- 
+  name: Nissan
+- 
+  name: Сбер
+- 
+  name: Ведомости
+- 
+  name: РБК
+- 
+  name: Интерфакс
+- 
+  name: raiffeisen
+- 
+  name: Sulliwan Studio
+- 
+  name: Алиди
+- 
+  name: Acronis
+- 
+  name: WayRay
+- 
+  name: Looi
+- 
+  name: INFINITI
 
 ----
 
@@ -68,6 +133,12 @@ Awardslist:
   prize: HM
   link: >
     https://www.awwwards.com/sites/nissan-pathfinder
+- 
+  project: Infiniti
+  award: Золотой сайт
+  year: "2020"
+  prize: Золото
+  link: ""
 
 ----
 

@@ -1,1 +1,21 @@
 Title: Site Title
+
+----
+
+Pagetitle: global title
+
+----
+
+Description: global desc
+
+----
+
+Keywords: global keywords
+
+----
+
+Ogimage: - file://e0uuvfml81ouiwua
+
+----
+
+Searchable: false
