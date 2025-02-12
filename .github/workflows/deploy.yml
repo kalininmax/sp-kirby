@@ -33,7 +33,8 @@ jobs:
 
       - name: Fix permissions on server
         run: |
-          ssh -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }}
-          sudo chown -R www-data:www-data /var/www/sp-kirby
-          sudo chmod -R 775 /var/www/sp-kirby
-          sudo systemctl restart nginx
+          ssh -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }} "
+            sudo chown -R www-data:www-data /var/www/sp-kirby &&
+            sudo chmod -R 775 /var/www/sp-kirby &&
+            sudo systemctl restart nginx
+          "
