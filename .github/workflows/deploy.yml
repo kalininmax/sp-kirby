@@ -24,13 +24,15 @@ jobs:
           ARGS: "-arvhlgo --delete"
           EXCLUDE: "/site/accounts /site/sessions /site/cache"
 
+      - name: Set SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ vars.REMOTE_HOST }} > ~/.ssh/known_hosts
+
       - name: Fix permissions on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ vars.REMOTE_HOST }}
-          username: ${{ vars.REMOTE_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo chown -R www-data:www-data /var/www/sp-kirby
-            sudo chmod -R 775 /var/www/sp-kirby
-            sudo systemctl restart nginx
+        run: |
+          sudo chown -R www-data:www-data /var/www/sp-kirby
+          sudo chmod -R 775 /var/www/sp-kirby
+          sudo systemctl restart nginx
