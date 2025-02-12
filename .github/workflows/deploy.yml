@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
           TARGET: ${{ vars.REMOTE_TARGET }}
-          ARGS: "-arvhlgo --delete"
+          ARGS: "-arvhlgo"
           EXCLUDE: "/site/accounts /site/sessions /site/cache"
 
       - name: Fix permissions on server
