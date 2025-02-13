@@ -22,8 +22,7 @@ jobs:
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
           TARGET: ${{ vars.REMOTE_TARGET }}
-          ARGS: "-arvhlgo --delete"
-          EXCLUDE: "/site/accounts /site/sessions /site/cache"
+          ARGS: "-arvhlgo --delete --exclude=site/accounts --exclude=site/sessions --exclude=site/cache"
 
       - name: Fix permissions on server
         uses: appleboy/ssh-action@master
