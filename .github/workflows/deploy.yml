@@ -22,7 +22,7 @@ jobs:
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
           TARGET: ${{ vars.REMOTE_TARGET }}
-          ARGS: "-arvhlgo"
+          ARGS: "-arvhlgo --delete"
           EXCLUDE: "/site/accounts /site/sessions /site/cache"
 
       - name: Fix permissions on server
